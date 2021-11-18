@@ -8,6 +8,8 @@ import config from  './utils/config'
 
 import logger from './utils/logger'
 
+import errors from './utils/errors'
+
 const app = express()
 
 app.use(logger.middleware)
@@ -20,5 +22,8 @@ app.get('/',(req, res)=>{
     logger.log.success('Calling Root')
     res.send({msg:'Hello There'})
 })
+
+app.use(errors.notFound)
+app.use(errors.errorHandler)
 
 app.listen(config.port)
