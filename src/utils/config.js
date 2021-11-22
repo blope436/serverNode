@@ -11,6 +11,8 @@ const envSchema = joi.object().keys({
     PORT: joi.number().positive().required(),
     ORIGIN: joi.string().uri().required(),
     DATABASE_URL: joi.string().uri().required(),
+    API_USER: joi.string().required(),
+    API_PASS: joi.string().required(),
 
 })
 .unknown()
@@ -24,4 +26,4 @@ if (error)
     
 }
 
-export default {nodeEnv: env.NODE_ENV, port: env.PORT, origin: env.ORIGIN}
+export default {nodeEnv: env.NODE_ENV, port: env.PORT, origin: env.ORIGIN, apiUser: env.API_USER, apiPass: env.API_PASS}

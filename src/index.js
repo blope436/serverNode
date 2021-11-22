@@ -10,6 +10,8 @@ import logger from './utils/logger'
 
 import errors from './utils/errors'
 
+import auth from './utils/auth'
+
 import router from './routes'
 
 const app = express()
@@ -27,6 +29,8 @@ app.use(
     origin: config.origin,
   }),
 )
+
+app.use(auth.initialize())
 
 app.use(router)
 

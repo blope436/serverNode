@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Todos {
-  id         Int     @id @default(autoincrement())
-  text       String
-  complteted Boolean
+  id        Int     @id @default(autoincrement())
+  text      String
+  completed Boolean
 }
