@@ -6,15 +6,15 @@ import { getTodos, getTodo, addTodo, updateTodo } from '../../utils/todo'
 
 const router = Router()
 
-router.get('/', (req, res) => 
+router.get('/', async (req, res) => 
 {
-  const todos = getTodos(req.query.completed)
+  const todos = await getTodos(req.query.completed)
   res.send(todos)
 })
 
-router.get('/:id', (req, res, next) => 
+router.get('/:id', async (req, res, next) => 
 {
-  const todo = getTodo(req.params.id)
+  const todo = await getTodo(req.params.id)
   if (todo) {
     res.send(todo)
   } 
@@ -27,10 +27,10 @@ router.get('/:id', (req, res, next) =>
   }
 })
 
-router.post('/', (req, res, next) => 
+router.post('/', async (req, res, next) => 
 {
   const todo = req.body
-  const response = addTodo(todo)
+  const response = await addTodo(todo)
 
   if (response.error) 
   {
@@ -45,10 +45,10 @@ router.post('/', (req, res, next) =>
   }
 })
 
-router.put('/:id', (req, res, next) => 
+router.put('/:id', async (req, res, next) => 
 {
   const todo = req.body
-  const response = updateTodo(req.params.id, todo)
+  const response = await updateTodo(req.params.id, todo)
 
   if (response.error) {
     res.status(StatusCodes.BAD_REQUEST)
