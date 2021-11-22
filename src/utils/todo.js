@@ -10,13 +10,13 @@ import logger from './logger'
 const todoSchema = Joi.object({
   text: Joi.string().min(10).required(),
   
-  completed: Joi.boolean().required(),
+  complteted: Joi.boolean().required(),
 })
 
 const idSchema = Joi.number().integer().positive().required()
 
-export const getTodos = async (completed = null) => {
-  if (completed === null) {
+export const getTodos = async (complteted = null) => {
+  if (complteted === null) {
     logger.log.success('Getting all todos')
     
     return await db.todos.findMany();
@@ -25,10 +25,10 @@ export const getTodos = async (completed = null) => {
   logger.log.success('Getting by completion todos')
 
   // eslint-disable-next-line no-unneeded-ternary
-  const isCompleted = completed === 'true' ? true : false
+  const isCompleted = complteted === 'true' ? true : false
 
   return await db.todos.findMany({
-    where: {completed: isCompleted,},
+    where: {complteted: isCompleted,},
   })
 }
 
@@ -70,7 +70,7 @@ export const addTodo = async (todo) => {
     select: {
       id: true,
       text: true,
-      completed: true,},
+      complteted: true,},
   })
 
   return {newTodo}
@@ -109,7 +109,7 @@ export const updateTodo = async (id, todo) => {
     select:{
       id: true,
       text: true,
-      completed: true,
+      complteted: true,
     }
   })
   
